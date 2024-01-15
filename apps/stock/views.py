@@ -1,21 +1,36 @@
-import imp
-from unicodedata import category
-from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework.response import Response
+# views.py in your 'inventory' app
+from rest_framework import generics
+from .models import Supplier, Purchase, PurchaseItem, Product
+from .serializers import SupplierSerializer, PurchaseSerializer, PurchaseItemSerializer, ProductSerializer
 
-from .models import Item, ItemCategory, Stock, Supplier
-from .serializers import ItemSerializer, ItemCategorySerializer
+class SupplierListCreateView(generics.ListCreateAPIView):
+    queryset = Supplier.objects.all()
+    serializer_class = SupplierSerializer
 
-class ItemsList(APIView):
-    def get(self, request, format=None):
-        items = Item.objects.all()
-        selializer = ItemSerializer(items, many=True)
-        return Response(selializer.data)
+class SupplierDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Supplier.objects.all()
+    serializer_class = SupplierSerializer
 
-class ItemsCategoriesList(APIView):
-    def get(self, request, format=None):
-        item_categories = ItemCategory.objects.all()
-        selializer = ItemCategorySerializer(item_categories, many=True)
-        return Response(selializer.data)
+class PurchaseListCreateView(generics.ListCreateAPIView):
+    queryset = Purchase.objects.all()
+    serializer_class = PurchaseSerializer
 
+class PurchaseDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Purchase.objects.all()
+    serializer_class = PurchaseSerializer
+
+class PurchaseItemListCreateView(generics.ListCreateAPIView):
+    queryset = PurchaseItem.objects.all()
+    serializer_class = PurchaseItemSerializer
+
+class PurchaseItemDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PurchaseItem.objects.all()
+    serializer_class = PurchaseItemSerializer
+
+class ProductListCreateView(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer

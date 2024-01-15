@@ -1,13 +1,18 @@
-from django.db import router
+# urls.py in your 'sales' app
 from django.urls import path
-from django.contrib.auth import views as auth_views
-from apps.pos.views import *
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.csrf import csrf_exempt
-
-from rest_framework import routers
-router = routers.SimpleRouter()
+from .views import (
+    CustomerListCreateView, CustomerDetailView,
+    SaleListCreateView, SaleDetailView,
+    SaleItemListCreateView, SaleItemDetailView
+)
 
 urlpatterns = [
-    path('', pos_dashboard, name = 'pos_dashboard'), 
+    path('customers/', CustomerListCreateView.as_view(), name='customer_list'),
+    path('customers/<int:pk>/', CustomerDetailView.as_view(), name='customer_detail'),
+
+    path('sales/', SaleListCreateView.as_view(), name='sale_list'),
+    path('sales/<int:pk>/', SaleDetailView.as_view(), name='sale_detail'),
+
+    path('saleitems/', SaleItemListCreateView.as_view(), name='saleitem_list'),
+    path('saleitems/<int:pk>/', SaleItemDetailView.as_view(), name='saleitem_detail'),
 ]

@@ -1,0 +1,58 @@
+[
+  {
+      "name": "Beer Category",
+      "subcategories": [
+          {
+              "name": "Ale Subcategory",
+              "subcategories": [
+                  {"name": "Pale Ale", "description": "A type of beer"},
+                  {"name": "Brown Ale", "description": "Another type of beer"}
+              ]
+          },
+          {"name": "Lager Subcategory", "description": "Another type of beer"}
+      ]
+  },
+  {
+      "name": "Spirits Category",
+      "subcategories": [
+          {"name": "Vodka Subcategory", "description": "A type of spirit"},
+          {
+              "name": "Whiskey Subcategory",
+              "subcategories": [
+                  {"name": "Scotch Whiskey", "description": "A type of whiskey"},
+                  {"name": "Bourbon", "description": "Another type of whiskey"}
+              ]
+          }
+      ]
+  },
+  {
+      "name": "Pale Ale",
+      "description": "A specific Pale Ale product",
+      "quantity_in_stock": 100
+  },
+  {
+      "name": "Brown Ale",
+      "description": "A specific Brown Ale product",
+      "quantity_in_stock": 50
+  },
+  {
+      "name": "Lager",
+      "description": "A specific Lager product",
+      "quantity_in_stock": 75
+  },
+  {
+      "name": "Vodka",
+      "description": "A specific Vodka product",
+      "quantity_in_stock": 120
+  },
+  {
+      "name": "Scotch Whiskey",
+      "description": "A specific Scotch Whiskey product",
+      "quantity_in_stock": 90
+  },
+  {
+      "name": "Bourbon",
+      "description": "A specific Bourbon product",
+      "quantity_in_stock": 60
+  }
+]

@@ -1,10 +1,14 @@
-from django.urls import path
-from django.contrib.auth import views as auth_views
-from apps.accounts.views import *
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.csrf import csrf_exempt
+# apps/accounts/urls.py
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CustomUserViewSet, custom_login, CustomObtainAuthToken, CustomLoginView
+
+# Create a router and register the CustomUserViewSet
+router = DefaultRouter()
+router.register(r'users', CustomUserViewSet, basename='accounts')
 
 urlpatterns = [
-    path('', user_list, name = 'user_list'), 
-
+    path('users', include(router.urls)),
+    path('login', CustomLoginView.as_view(), name='login'),
+    path('token', CustomObtainAuthToken.as_view(), name='obtain_token'),
 ]

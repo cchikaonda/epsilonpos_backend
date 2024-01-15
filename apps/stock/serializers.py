@@ -1,74 +1,35 @@
-from dataclasses import field
+# serializers.py in your 'inventory' app
 from rest_framework import serializers
-from .models import ItemCategory, Unit, Item, Supplier, Stock, BatchNumber
+from .models import Supplier, Purchase, PurchaseItem, Product, ProductCategory
 
-
-class SuppliSerializer(serializers.ModelSerializer):
+class SupplierSerializer(serializers.ModelSerializer):
     class Meta:
         model = Supplier
-        fields = (
-            'id',
-            'name',
-            'address',
-            'phone_number',
-            'description',
-        )
+        fields = '__all__'
 
-class UnitSerializer(serializers.ModelSerializer):
+class PurchaseItemSerializer(serializers.ModelSerializer):
+    product = serializers.StringRelatedField()  # Use StringRelatedField to display the 'name' field of the related Product
+
     class Meta:
-        model = Unit
-        fields = (
-            'id',
-            'unit_short_name',
-            'unit_description',
-        )
+        model = PurchaseItem
+        fields = '__all__'
 
-class ItemCategorySerializer(serializers.ModelSerializer):
+class PurchaseSerializer(serializers.ModelSerializer):
+    supplier = SupplierSerializer()
+    purchase_items = PurchaseItemSerializer(many=True, read_only=True)
+
     class Meta:
-        model = ItemCategory
-        fields = (
-            'id',
-            'category_name',
-            'category_description',
-            'category_colour',
-        )
+        model = Purchase
+        fields = '__all__'
 
-class ItemSerializer(serializers.ModelSerializer):
-    # selling_price = serializers.SerializerMethodField()
+class ProductCategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Item
-        fields = [
-             'id',
-            'item_name',
-            'item_description',
-            'unit',
-            'barcode',
-            'get_image',
-            'cost_price',
-            'total_cost_price',
-            'price_currency',
-            # 'selling_price',
-            # 'currency_selling_price',
-            'price',
-            'discount_price',
-            'discount_price',
-            'category',
-            'quantity_at_hand',
-            'reorder_level',
-            'active',
-            'slug',
-        ]
-           
+        model = ProductCategory
+        fields = '__all__'
 
-        
+class ProductSerializer(serializers.ModelSerializer):
+    category = ProductCategorySerializer()  # Use CategorySerializer to display the 'name' field of the related Category
 
-class BatchNumberSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BatchNumber
-        fields = (
-            'id',
-            'batch_number',
-            'batch_number_description',
-            'created_at',
-
-        )
+        model = Product
+        fields = '__all__'
