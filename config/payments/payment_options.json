@@ -1,0 +1,30 @@
+{
+    "payment_options": [
+        {
+          "name": "Bank Transfer",
+          "code": "bank_transfer",
+          "fee": 0.0
+        },
+        {
+          "name": "Credit Card",
+          "code": "credit_card",
+          "fee": 0.0
+        },
+        {
+          "name": "PayPal",
+          "code": "paypal",
+          "fee": 0.0
+        },
+        {
+            "name": "Airtel Money",
+            "code": "airtel_money",
+            "fee": 0.0
+        },
+        {
+            "name": "Tnm Mpamba",
+            "code": "mpamba",
+            "fee": 0.0
+        }
+       
+      ]
+}

@@ -1,0 +1,5 @@
+{
+    "bank_transfer_fee": 10.0,
+    "cash_deposit_fee": 15.0,
+    "cheque_deposit_fee": 20.0
+}

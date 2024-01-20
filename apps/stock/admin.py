@@ -1,5 +1,6 @@
 # admin.py in your 'inventory' app
 from django.contrib import admin
+from django import forms
 from .models import Supplier, Purchase, PurchaseItem, Product, Batch, ProductCategory
 
 class PurchaseItemInline(admin.TabularInline):
@@ -30,9 +31,17 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'quantity_in_stock', 'created_at', 'updated_at')
     search_fields = ['name']
 
+class BatchForm(forms.ModelForm):
+    class Meta:
+        model = Batch
+        fields = '__all__'
+
 class BatchAdmin(admin.ModelAdmin):
-    list_display = ('batch_number', 'purchase')
-    search_fields = ['batch_number']
+    list_display = ('batch_number', 'purchase', 'manufacturing_date', 'expiry_date')
+    form = BatchForm
+
+    class Media:
+        js = ('stock/js/batch_admin.js',)
 
 class ProductCategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)

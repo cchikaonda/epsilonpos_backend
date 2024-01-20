@@ -1,5 +1,6 @@
 # models.py in your 'inventory' app
 from django.db import models
+from django.utils import timezone
 import uuid
 
 class Supplier(models.Model):
@@ -28,6 +29,8 @@ class Batch(models.Model):
         help_text='Choose "Auto-generated" or "Manual entry"',
     )
     purchase = models.ForeignKey('Purchase', on_delete=models.CASCADE, related_name='batches')
+    manufacturing_date = models.DateField(default=timezone.now)
+    expiry_date = models.DateField()
     # Add more batch-related fields as needed
 
     def save(self, *args, **kwargs):
@@ -35,6 +38,9 @@ class Batch(models.Model):
             # Only set a manual batch number if it's a new entry
             self.batch_number = str(uuid.uuid4())
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.batch_number} - {self.manufacturing_date}"
 
 class Purchase(models.Model):
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, related_name='purchases')

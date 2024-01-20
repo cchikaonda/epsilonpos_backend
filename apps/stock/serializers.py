@@ -1,7 +1,12 @@
 # serializers.py in your 'inventory' app
 from rest_framework import serializers
-from .models import Supplier, Purchase, PurchaseItem, Product, ProductCategory
+from .models import Supplier, Purchase, PurchaseItem, Product, ProductCategory, Batch
 
+class BatchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Batch
+        fields = '__all__'
+        
 class SupplierSerializer(serializers.ModelSerializer):
     class Meta:
         model = Supplier
@@ -22,14 +27,17 @@ class PurchaseSerializer(serializers.ModelSerializer):
         model = Purchase
         fields = '__all__'
 
+
 class ProductCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductCategory
         fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = ProductCategorySerializer()  # Use CategorySerializer to display the 'name' field of the related Category
+    category = ProductCategorySerializer()
+    parent_category_name = serializers.StringRelatedField(source='category.parent_category', read_only=True)
 
     class Meta:
         model = Product
         fields = '__all__'
+

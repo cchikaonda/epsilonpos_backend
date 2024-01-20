@@ -45,3 +45,12 @@ class SaleItem(models.Model):
 
     def calculate_total_price(self):
         return self.quantity_sold * self.unit_price
+
+class MobileTransactionFee(models.Model):
+    amount_range_start = models.FloatField()
+    amount_range_end = models.FloatField()
+    fee = models.FloatField()
+
+    def __str__(self):
+        return f'{self.amount_range_start} - {self.amount_range_end}: {self.fee}'
+

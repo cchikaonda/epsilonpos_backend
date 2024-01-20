@@ -3,10 +3,12 @@ from django.urls import path
 from .views import (
     CustomerListCreateView, CustomerDetailView,
     SaleListCreateView, SaleDetailView,
-    SaleItemListCreateView, SaleItemDetailView
+    SaleItemListCreateView, SaleItemDetailView,
+    mobile_transaction_fee_view,
 )
 
 urlpatterns = [
+    path('mobile-transaction-fees/', mobile_transaction_fee_view, name='mobile_transaction_fee_view'),
     path('customers/', CustomerListCreateView.as_view(), name='customer_list'),
     path('customers/<int:pk>/', CustomerDetailView.as_view(), name='customer_detail'),
 

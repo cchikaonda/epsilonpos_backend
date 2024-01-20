@@ -1,6 +1,6 @@
 # admin.py in your 'your_app_name' app
 from django.contrib import admin
-from .models import Customer, Sale, SaleItem
+from .models import Customer, Sale, SaleItem, MobileTransactionFee
 
 class SaleItemInline(admin.TabularInline):
     model = SaleItem
@@ -14,6 +14,11 @@ class SaleAdmin(admin.ModelAdmin):
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone_number', 'total_orders')
     search_fields = ['name', 'phone_number']
+
+
+@admin.register(MobileTransactionFee)
+class MobileTransactionFeeAdmin(admin.ModelAdmin):
+    list_display = ('amount_range_start', 'amount_range_end', 'fee')
 
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Sale, SaleAdmin)
