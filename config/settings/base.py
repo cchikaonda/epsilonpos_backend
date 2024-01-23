@@ -24,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nx=0fe@+bw$e1-&x&)ys!yvrvexw2b3m-(e%d__hb2$wh%hzwn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+ROOT_URLCONF = 'epsilonpos_backend.urls'
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:8080', 'http://127.0.0.1:8000', 'http://localhost:8000', 'http://localhost:8080', 'http://0.0.0.0:8000', 'http://0.0.0.0:8080']
@@ -146,16 +148,9 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
-
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '../static'),
-]
-
 tnm_mpamba_file = Path(BASE_DIR, 'service_fees/tnm_mpamba.json'),
 airtel_money_file = Path(BASE_DIR, 'service_fees/airtel_money.json'),
+
 
 
 # Default primary key field type
