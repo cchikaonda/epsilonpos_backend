@@ -12,5 +12,7 @@ daemon = True
 
 # Specify the path to the Django WSGI application
 # Replace 'your_project' and 'wsgi' with your actual project and WSGI module names
-pythonpath = '/epsilonpos_backend'
-wsgi_app = '/epsilonpos_backend/config/wsgi.py.wsgi:application'
+
+# Assuming your project is named 'epsilonpos_backend'
+pythonpath = '/var/www/epsilonposv2/epsilonpos_backend'
+wsgi_app = 'config.wsgi.application'
