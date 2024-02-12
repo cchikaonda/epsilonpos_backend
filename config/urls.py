@@ -8,8 +8,8 @@ urlpatterns = [
     path('api/v1/', include('djoser.urls')),
     path('api/v1/', include('djoser.urls.authtoken')), 
 
-    path('api/v1/', include('apps.accounts.urls')), 
-    path('api/v1/', include('apps.stock.urls')),
-    path('api/v1/', include('apps.pos.urls')),
+    path('api/v1/accounts/', include('apps.accounts.urls')), 
+    path('api/v1/stock/', include('apps.stock.urls')),
+    path('api/v1/pos/', include('apps.pos.urls')),
 
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

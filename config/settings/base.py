@@ -12,6 +12,27 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import json
+import pymysql
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Static files (CSS, JavaScript, images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '../static/')  # Update this path based on your project structure
+
+# Additional locations of static files
+STATICFILES_DIRS = [
+    # os.path.join(BASE_DIR, '/static/'),  # Add other paths if necessary
+]
+
+# Media files (uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/') 
+
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,14 +45,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nx=0fe@+bw$e1-&x&)ys!yvrvexw2b3m-(e%d__hb2$wh%hzwn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ROOT_URLCONF = 'epsilonpos_backend.urls'
 
-ALLOWED_HOSTS = ['*']
-CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:8080', 'http://127.0.0.1:8000', 'http://localhost:8000', 'http://localhost:8080', 'http://0.0.0.0:8000', 'http://0.0.0.0:8080']
+ALLOWED_HOSTS = ['localhost', 'test.epsilonpos.com']
+CORS_ORIGIN_ALLOW_ALL = True
 
-# CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:8080', 'http://127.0.0.1:8000', 'http://localhost:8000', 'http://localhost:8080', 'http://0.0.0.0:8000', 'http://0.0.0.0:8080']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -64,7 +84,7 @@ INSTALLED_APPS = [
     'constance',
     'djmoney',
     'phonenumber_field',
-
+    'django_extensions',
     'apps.accounts',
     'apps.stock',
     'apps.pos',
